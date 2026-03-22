@@ -1,0 +1,21 @@
+{
+  "name": "StudioNorth Creative Studio",
+  "short_name": "StudioNorth",
+  "description": "Boutique branding, web design, and product sourcing studio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F4F0",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# StudioNorth — robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /thank-you
+
+# Sitemap
+Sitemap: https://studionorth.co/sitemap.xml
+
+# Crawl-delay (optional, respected by some bots)
+Crawl-delay: 1
