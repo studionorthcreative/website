@@ -73,7 +73,7 @@ export default async function handler(req, res) {
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; color: #1B2A4A;">
         <div style="background: #F0EBE3; padding: 32px; border-radius: 8px; margin-bottom: 24px;">
           <h1 style="font-size: 24px; font-weight: 600; margin: 0 0 8px;">New Project Inquiry</h1>
-          <p style="font-size: 14px; color: #6B7280; margin: 0;">From studionorth.co contact form</p>
+          <p style="font-size: 14px; color: #6B7280; margin: 0;">Submitted via Studio North Contact Form</p>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
@@ -124,7 +124,7 @@ export default async function handler(req, res) {
       console.error('Resend error:', error);
       return res.status(500).json({
         error: 'Failed to send message',
-        details: 'Please try again or email us directly at hello@studionorth.co'
+        details: 'Please try again or email us directly at contact.studionorthcreative@gmail.com'
       });
     }
 
@@ -137,7 +137,7 @@ export default async function handler(req, res) {
     console.error('Server error:', err);
     return res.status(500).json({
       error: 'Something went wrong',
-      details: 'Please try again or email us directly at hello@studionorth.co'
+      details: 'Please try again or email us directly at contact.studionorthcreative@gmail.com'
     });
   }
 }

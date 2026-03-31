@@ -52,7 +52,7 @@ export default async function handler(req, res) {
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; color: #1B2A4A;">
         <div style="background: #F0EBE3; padding: 32px; border-radius: 8px; margin-bottom: 24px;">
           <h1 style="font-size: 22px; font-weight: 600; margin: 0 0 6px;">New Audit Submission</h1>
-          <p style="font-size: 14px; color: #6B7280; margin: 0;">From studionorth.co/audit</p>
+          <p style="font-size: 14px; color: #6B7280; margin: 0;">Submitted via Studio North Website Audit</p>
         </div>
         <table style="width: 100%; border-collapse: collapse;">
           ${row('Website', url)}
