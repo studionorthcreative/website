@@ -2,7 +2,6 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY;
 const TO_EMAIL = process.env.CONTACT_EMAIL || 'contact.studionorthcreative@gmail.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'StudioNorth <onboarding@resend.dev>';
 
@@ -17,13 +16,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, business, service, description, budget, turnstileToken } = req.body;
+    const { name, email, business, service, description, budget } = req.body;
 
     // --- Validate required fields ---
-    if (!name || !email || !description || !turnstileToken) {
+    if (!name || !email || !description) {
       return res.status(400).json({
         error: 'Missing required fields',
-        details: 'Name, email, project description, and CAPTCHA verification are required.'
+        details: 'Name, email, and project description are required.'
       });
     }
 
@@ -31,25 +30,6 @@ export default async function handler(req, res) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: 'Invalid email address' });
-    }
-
-    // --- Verify Cloudflare Turnstile token ---
-    const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        secret: TURNSTILE_SECRET,
-        response: turnstileToken,
-      }),
-    });
-
-    const turnstileResult = await turnstileResponse.json();
-
-    if (!turnstileResult.success) {
-      return res.status(403).json({
-        error: 'CAPTCHA verification failed',
-        details: 'Please try again.'
-      });
     }
 
     // --- Build email content ---

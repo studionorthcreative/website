@@ -256,34 +256,6 @@ function metaTrackCustom(eventName, params) {
   var successCloseBtn = document.getElementById('successClose');
   var errorRetryBtn = document.getElementById('errorRetry');
 
-  var turnstileWidgetId = null;
-  var turnstileToken = null;
-
-  // --- Turnstile Site Key ---
-  // Replace with your actual Cloudflare Turnstile site key
-  var TURNSTILE_SITE_KEY = '0x4AAAAAAA_PLACEHOLDER_REPLACE_ME';
-
-  // Render Turnstile widget when modal opens (lazy init)
-  function initTurnstile() {
-    if (turnstileWidgetId !== null) return;
-    if (typeof turnstile === 'undefined') return;
-
-    turnstileWidgetId = turnstile.render('#turnstile-widget', {
-      sitekey: TURNSTILE_SITE_KEY,
-      theme: 'light',
-      callback: function (token) {
-        turnstileToken = token;
-        hideError('turnstile');
-      },
-      'expired-callback': function () {
-        turnstileToken = null;
-      },
-      'error-callback': function () {
-        turnstileToken = null;
-      }
-    });
-  }
-
   // Open modal
   function openModal() {
     modal.classList.add('active');
@@ -293,9 +265,6 @@ function metaTrackCustom(eventName, params) {
     contactForm.style.display = '';
     formSuccess.style.display = 'none';
     formError.style.display = 'none';
-
-    // Init Turnstile on first open
-    setTimeout(initTurnstile, 200);
 
     // Track
     gtmEvent('modal_open', { modal: 'contact' });
@@ -307,11 +276,6 @@ function metaTrackCustom(eventName, params) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
 
-    // Reset Turnstile for next open
-    if (turnstileWidgetId !== null && typeof turnstile !== 'undefined') {
-      turnstile.reset(turnstileWidgetId);
-    }
-    turnstileToken = null;
   }
 
   // Bind all "Start a Project" buttons
@@ -407,13 +371,6 @@ function metaTrackCustom(eventName, params) {
       hideError('description');
     }
 
-    if (!turnstileToken) {
-      showError('turnstile', 'Please complete the verification.');
-      valid = false;
-    } else {
-      hideError('turnstile');
-    }
-
     return valid;
   }
 
@@ -434,7 +391,6 @@ function metaTrackCustom(eventName, params) {
       business: document.getElementById('field-business').value.trim(),
       service: document.getElementById('field-service').value,
       description: document.getElementById('field-description').value.trim(),
-      turnstileToken: turnstileToken
     };
 
     fetch('/api/contact', {
@@ -477,16 +433,9 @@ function metaTrackCustom(eventName, params) {
       formError.style.display = '';
     })
     .finally(function () {
-      // Reset button
       formSubmitBtn.disabled = false;
       formSubmitBtn.querySelector('.submit-text').style.display = '';
       formSubmitBtn.querySelector('.submit-loading').style.display = 'none';
-
-      // Reset Turnstile
-      if (turnstileWidgetId !== null && typeof turnstile !== 'undefined') {
-        turnstile.reset(turnstileWidgetId);
-      }
-      turnstileToken = null;
     });
   });
 
