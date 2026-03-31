@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Report — StudioNorth</title>
+  <meta name="description" content="Your Studio North website audit report. See your scores, top issues, and priority fixes.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://studionorth.co/audit-results">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#1B2A4A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* --- Results page layout --- */
+    .results-main {
+      padding-top: 80px;
+      background: var(--surface-light);
+    }
+    .results-body {
+      padding: 64px 0 96px;
+    }
+    .results-inner {
+      max-width: 896px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+
+    /* --- Cards --- */
+    .report-card {
+      background: #fff;
+      border: 1px solid var(--surface-deep);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 16px;
+    }
+    .report-card-section {
+      background: #fff;
+      border: 1px solid var(--surface-deep);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .nudge-card {
+      background: var(--surface-primary);
+      border: 1px solid var(--surface-deep);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    /* --- Report header layout --- */
+    .report-header-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .report-label {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--neutral-600);
+    }
+    .report-badge-sample {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--surface-deep);
+      background: var(--surface-primary);
+      color: var(--neutral-600);
+    }
+    .report-header-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .report-site-name {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 500;
+      color: var(--ink-deep);
+      margin-bottom: 6px;
+      line-height: 1.15;
+    }
+    .report-meta {
+      font-size: 13px;
+      color: var(--neutral-600);
+      margin-bottom: 12px;
+    }
+    .report-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      font-size: 13px;
+      color: var(--neutral-400);
+    }
+    .report-summary-dot {
+      color: var(--surface-deep);
+    }
+    .report-score-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .report-score-number {
+      font-family: var(--font-sans);
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .report-score-out-of {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--neutral-400);
+    }
+
+    /* --- Score colors --- */
+    .score-green  { color: #059669; }
+    .score-amber  { color: #d97706; }
+    .score-red    { color: #dc2626; }
+
+    /* --- Score badge --- */
+    .score-badge {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .score-badge-green { color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; }
+    .score-badge-amber { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; }
+    .score-badge-red   { color: #991b1b; background: #fef2f2; border: 1px solid #fecaca; }
+
+    /* --- Category scores grid --- */
+    .scores-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .score-row-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .score-row-num {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-deep);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .fill-green { background: #10b981; }
+    .fill-amber { background: #f59e0b; }
+    .fill-red   { background: #ef4444; }
+
+    /* --- Issues/Working grid --- */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .issue-list,
+    .working-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .issue-item,
+    .working-item {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.55;
+    }
+    .issue-icon  { color: #ef4444; flex-shrink: 0; font-weight: 500; margin-top: 1px; }
+    .working-icon { color: #059669; flex-shrink: 0; font-weight: 500; margin-top: 1px; }
+
+    /* --- Priority fixes --- */
+    .fixes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .fix-card {
+      background: #fff;
+      border: 1px solid var(--surface-deep);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color var(--duration-fast) var(--ease);
+    }
+    .fix-card:hover {
+      border-color: var(--ink);
+    }
+    .fix-number {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--surface-deep);
+      line-height: 1;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .fix-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .fix-badge {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .fix-badge-high   { color: #991b1b; background: #fef2f2; border: 1px solid #fecaca; }
+    .fix-badge-medium { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; }
+
+    /* --- Bottom CTA --- */
+    .results-cta {
+      background: var(--ink-deep);
+      border-radius: 8px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .results-cta-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .results-cta-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      max-width: 440px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+    .results-section-heading {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--neutral-600);
+      margin-bottom: 16px;
+    }
+
+    /* --- Nudge card --- */
+    .nudge-label {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--neutral-600);
+      margin-bottom: 12px;
+    }
+    .nudge-body {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .nudge-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--surface-deep);
+      transition: text-decoration-color var(--duration-fast) var(--ease);
+    }
+    .nudge-link:hover {
+      text-decoration-color: var(--ink);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      .report-header-body { flex-direction: column; gap: 20px; }
+      .report-score-block { align-items: flex-start; }
+      .scores-grid { grid-template-columns: 1fr; }
+      .two-col-grid { grid-template-columns: 1fr; }
+      .results-cta { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">STUDIONORTH</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="/#process">Process</a>
+        <a href="/#about">About</a>
+      </div>
+      <a href="/#contact" class="btn btn-primary nav-cta">Start a Project</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="/#work" class="mobile-link">Work</a>
+      <a href="/#services" class="mobile-link">Services</a>
+      <a href="/#process" class="mobile-link">Process</a>
+      <a href="/#about" class="mobile-link">About</a>
+      <a href="/#contact" class="btn btn-primary mobile-cta">Start a Project</a>
+    </div>
+  </div>
+
+  <main class="results-main">
+    <div class="results-body">
+      <div class="results-inner">
+
+        <!-- Report header -->
+        <div class="report-card">
+          <div class="report-header-top">
+            <span class="report-label">Audit Report</span>
+            <span class="report-badge-sample">Sample</span>
+          </div>
+          <div class="report-header-body">
+            <div>
+              <h1 class="report-site-name">example-business.com</h1>
+              <p class="report-meta">March 2026 · Prepared by Studio North</p>
+              <div class="report-summary">
+                <span>6 categories analyzed</span>
+                <span class="report-summary-dot">·</span>
+                <span>5 priority fixes identified</span>
+                <span class="report-summary-dot">·</span>
+                <span>4 strengths noted</span>
+              </div>
+            </div>
+            <div class="report-score-block">
+              <span class="report-score-number score-amber">61</span>
+              <span class="report-score-out-of">out of 100</span>
+              <span class="score-badge score-badge-amber">Needs Work</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio North nudge -->
+        <div class="nudge-card">
+          <p class="nudge-label">Studio North</p>
+          <p class="nudge-body">A score of 61 means the site is functional but leaving real opportunity on the table. Every issue in this report is something we address directly in a website rebuild. If you want to talk through what we found, that conversation costs nothing.</p>
+          <a href="/#contact" class="nudge-link">Talk to Studio North →</a>
+        </div>
+
+        <!-- Category scores -->
+        <p class="results-section-heading">Category Scores</p>
+        <div class="scores-grid">
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">SEO &amp; Discoverability</span>
+              <span class="score-row-num score-amber">52</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-amber" style="width:52%"></div></div>
+          </div>
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">Page Speed</span>
+              <span class="score-row-num score-green">68</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-green" style="width:68%"></div></div>
+          </div>
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">Content &amp; Messaging</span>
+              <span class="score-row-num score-red">44</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-red" style="width:44%"></div></div>
+          </div>
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">User Experience</span>
+              <span class="score-row-num score-green">70</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-green" style="width:70%"></div></div>
+          </div>
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">Conversion</span>
+              <span class="score-row-num score-red">39</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-red" style="width:39%"></div></div>
+          </div>
+
+          <div class="report-card-section">
+            <div class="score-row">
+              <span class="score-row-name">Technical Health</span>
+              <span class="score-row-num score-green">75</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-green" style="width:75%"></div></div>
+          </div>
+
+        </div>
+
+        <!-- Top issues + What's working -->
+        <div class="two-col-grid">
+
+          <div class="report-card-section">
+            <p class="results-section-heading">Top Issues</p>
+            <ul class="issue-list">
+              <li class="issue-item"><span class="issue-icon">✕</span>No clear value proposition visible above the fold.</li>
+              <li class="issue-item"><span class="issue-icon">✕</span>Mobile page load time is 6.2 seconds, well above the 3-second benchmark.</li>
+              <li class="issue-item"><span class="issue-icon">✕</span>Missing meta descriptions on 4 key pages.</li>
+              <li class="issue-item"><span class="issue-icon">✕</span>Primary CTA buttons are inconsistent and easy to miss.</li>
+              <li class="issue-item"><span class="issue-icon">✕</span>Homepage copy focuses on features, not customer outcomes.</li>
+            </ul>
+          </div>
+
+          <div class="report-card-section">
+            <p class="results-section-heading">What Is Working</p>
+            <ul class="working-list">
+              <li class="working-item"><span class="working-icon">✓</span>Clean, professional visual design.</li>
+              <li class="working-item"><span class="working-icon">✓</span>SSL certificate is active and the site is secure.</li>
+              <li class="working-item"><span class="working-icon">✓</span>Mobile-responsive layout across pages.</li>
+              <li class="working-item"><span class="working-icon">✓</span>Google Analytics is installed and tracking.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Priority fixes -->
+        <p class="results-section-heading">Priority Fixes</p>
+        <div class="fixes-list">
+
+          <div class="fix-card">
+            <span class="fix-number">01</span>
+            <p class="fix-text">Rewrite the homepage headline to clearly state what you do and who it is for.</p>
+            <span class="fix-badge fix-badge-high">High</span>
+          </div>
+
+          <div class="fix-card">
+            <span class="fix-number">02</span>
+            <p class="fix-text">Compress images and enable lazy loading to reduce mobile load time.</p>
+            <span class="fix-badge fix-badge-high">High</span>
+          </div>
+
+          <div class="fix-card">
+            <span class="fix-number">03</span>
+            <p class="fix-text">Add unique meta descriptions to all key pages.</p>
+            <span class="fix-badge fix-badge-medium">Medium</span>
+          </div>
+
+          <div class="fix-card">
+            <span class="fix-number">04</span>
+            <p class="fix-text">Simplify and strengthen your primary call-to-action on every page.</p>
+            <span class="fix-badge fix-badge-high">High</span>
+          </div>
+
+          <div class="fix-card">
+            <span class="fix-number">05</span>
+            <p class="fix-text">Rewrite copy to focus on customer outcomes instead of product features.</p>
+            <span class="fix-badge fix-badge-medium">Medium</span>
+          </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="results-cta">
+          <h2 class="results-cta-headline">These fixes don't have to wait.</h2>
+          <p class="results-cta-desc">Studio North rebuilds and redesigns websites for businesses that are ready to fix problems like the ones above. The audit is free. The next step is a short call to see if we are a fit.</p>
+          <a href="/#contact" class="btn btn-light">Book a Free Strategy Call →</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">STUDIONORTH</a>
+          <p class="footer-descriptor">Design & Brand Studio</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <p class="footer-col-title">Studio</p>
+            <a href="/#work">Work</a>
+            <a href="/#services">Services</a>
+            <a href="/#about">About</a>
+            <a href="#">Insights</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Connect</p>
+            <a href="mailto:contact.studionorthcreative@gmail.com">contact.studionorthcreative@gmail.com</a>
+            <a href="https://www.instagram.com/studionorthcreative/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 StudioNorth Creative Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Nav scroll
+      var nav = document.getElementById('nav');
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      }, { passive: true });
+
+      // Mobile toggle
+      var toggle = document.getElementById('navToggle');
+      var mobileMenu = document.getElementById('mobileMenu');
+      toggle.addEventListener('click', function () {
+        toggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      document.querySelectorAll('.mobile-link, .mobile-cta').forEach(function (link) {
+        link.addEventListener('click', function () {
+          toggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
