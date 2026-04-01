@@ -2,7 +2,10 @@
   "name": "studionorth-website",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.81.0",
+    "node-html-parser": "^7.1.0",
     "resend": "^4.0.0"
   }
 }
