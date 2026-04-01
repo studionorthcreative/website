@@ -137,7 +137,11 @@ async function fetchPSI(url) {
   const apiKey = process.env.GOOGLE_PSI_API_KEY;
   if (!apiKey) throw new Error('GOOGLE_PSI_API_KEY not set');
   const endpoint = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance&key=${apiKey}`;
-  const res = await fetch(endpoint, { signal: AbortSignal.timeout(45000) });
+  let res = await fetch(endpoint, { signal: AbortSignal.timeout(45000) });
+  if (!res.ok && res.status >= 500) {
+    await new Promise(r => setTimeout(r, 2000));
+    res = await fetch(endpoint, { signal: AbortSignal.timeout(45000) });
+  }
   if (!res.ok) throw new Error(`PSI API error: ${res.status}`);
   const data = await res.json();
   const audits = data?.lighthouseResult?.audits ?? {};
@@ -166,6 +170,7 @@ export async function runAudit(rawUrl, ctx) {
     ? pageDataResult.value
     : { html: '', headers: {}, statusCode: 0, finalUrl: normUrl };
 
+  if (psiResult.status === 'rejected') console.error('PSI failed:', psiResult.reason?.message ?? psiResult.reason);
   const psi = psiResult.status === 'fulfilled'
     ? psiResult.value
     : { lcp: null, cls: null, tbt: null, ttfb: null, weight: null, mobileScore: null };
