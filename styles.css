@@ -310,6 +310,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 80px clamp(24px, 6vw, 48px) 48px;
+  overflow-y: auto;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--duration-mid) var(--ease);
@@ -324,18 +326,19 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap-lg);
+  gap: var(--gap-md);
 }
 
 .mobile-link {
   font-family: var(--font-serif);
-  font-size: 32px;
+  font-size: clamp(26px, 7vw, 32px);
   font-weight: 400;
+  line-height: 1;
   color: var(--ink);
 }
 
 .mobile-cta {
-  margin-top: var(--gap-md);
+  margin-top: var(--gap-lg);
 }
 
 /* --- Hero --- */
