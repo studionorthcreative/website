@@ -33,7 +33,10 @@
     .page-hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-xl);
+      align-items: center;
     }
     .page-hero-headline {
       font-family: var(--font-serif);
@@ -49,7 +52,67 @@
       font-size: clamp(17px, 1.5vw, 20px);
       line-height: 1.55;
       color: var(--neutral-600);
-      max-width: 540px;
+      max-width: 480px;
+    }
+    .page-hero-visual {
+      aspect-ratio: 4/5;
+      background: var(--ink-deep);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--gap-lg);
+    }
+    .page-hero-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(175deg, #1c3058 0%, var(--ink-deep) 50%, #0f1b32 100%);
+      opacity: 0.65;
+    }
+    .page-hero-visual-diagram {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .page-hero-visual-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Phase body grid */
+    .phase-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-xl);
+      align-items: start;
+    }
+    .phase-visual {
+      aspect-ratio: 4/5;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--gap-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .phase-visual-texture {
+      position: absolute;
+      inset: 0;
+    }
+    .phase-visual-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      position: relative;
+      z-index: 1;
     }
 
     /* Phase sections */
@@ -105,6 +168,10 @@
     }
 
     @media (max-width: 768px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-visual { aspect-ratio: 4/3; display: none; }
+      .phase-body { grid-template-columns: 1fr; }
+      .phase-visual { aspect-ratio: 4/3; }
       .post-callouts { grid-template-columns: 1fr; }
     }
   </style>
@@ -150,9 +217,31 @@
     <section class="page-hero">
       <div class="container">
         <div class="page-hero-inner reveal">
-          <p class="section-label">Process</p>
-          <h1 class="page-hero-headline">How we work.</h1>
-          <p class="page-hero-sub">From the first inquiry to delivery and follow-up, every step is built to keep the work clear, considered, and moving in the right direction.</p>
+          <div class="page-hero-content">
+            <p class="section-label">Process</p>
+            <h1 class="page-hero-headline">How we work.</h1>
+            <p class="page-hero-sub">From the first inquiry to delivery and follow-up, every step is built to keep the work clear, considered, and moving in the right direction.</p>
+          </div>
+          <div class="page-hero-visual">
+            <div class="page-hero-visual-bg"></div>
+            <svg class="page-hero-visual-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- vertical rule -->
+              <line x1="84" y1="24" x2="84" y2="236" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <!-- step 01 -->
+              <rect x="78" y="40" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <text x="102" y="51" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.5)" letter-spacing="0.1em">01</text>
+              <!-- step 02 -->
+              <rect x="78" y="100" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <text x="102" y="111" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.35)" letter-spacing="0.1em">02</text>
+              <!-- step 03 -->
+              <rect x="78" y="160" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+              <text x="102" y="171" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.22)" letter-spacing="0.1em">03</text>
+              <!-- step 04 -->
+              <rect x="78" y="220" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="102" y="231" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.14)" letter-spacing="0.1em">04</text>
+            </svg>
+            <span class="page-hero-visual-label">StudioNorth</span>
+          </div>
         </div>
       </div>
     </section>
@@ -206,34 +295,40 @@
           <h2 class="phase-headline">How we build your brand.</h2>
           <p class="phase-intro">Brand identity is the most research-intensive of our services. Before anything is designed, we spend time understanding your business, your audience, and the visual territory you need to own. That foundation is what makes the work last.</p>
         </div>
-        <div class="process-steps">
-          <div class="process-step reveal">
-            <span class="step-number">01</span>
-            <div class="step-content">
-              <h3 class="step-title">Discovery</h3>
-              <p class="step-desc">We learn your business, your competitors, and what your brand needs to communicate. This shapes everything that follows.</p>
+        <div class="phase-body">
+          <div class="process-steps">
+            <div class="process-step reveal">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h3 class="step-title">Discovery</h3>
+                <p class="step-desc">We learn your business, your competitors, and what your brand needs to communicate. This shapes everything that follows.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h3 class="step-title">Direction</h3>
+                <p class="step-desc">We present a clear creative direction before any design begins. Agreed direction means no wasted rounds later.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h3 class="step-title">Design</h3>
+                <p class="step-desc">Logo, color, typography, and the full identity system, built in alignment with the approved direction. Every element considered, every decision documented.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h3 class="step-title">Delivery</h3>
+                <p class="step-desc">Revision rounds, final production files, and a brand guidelines document so the system can be used consistently from day one.</p>
+              </div>
             </div>
           </div>
-          <div class="process-step reveal">
-            <span class="step-number">02</span>
-            <div class="step-content">
-              <h3 class="step-title">Direction</h3>
-              <p class="step-desc">We present a clear creative direction before any design begins. Agreed direction means no wasted rounds later.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">03</span>
-            <div class="step-content">
-              <h3 class="step-title">Design</h3>
-              <p class="step-desc">Logo, color, typography, and the full identity system, built in alignment with the approved direction. Every element considered, every decision documented.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">04</span>
-            <div class="step-content">
-              <h3 class="step-title">Delivery</h3>
-              <p class="step-desc">Revision rounds, final production files, and a brand guidelines document so the system can be used consistently from day one.</p>
-            </div>
+          <div class="phase-visual reveal" style="background: var(--surface-deep);">
+            <div class="phase-visual-texture" style="background: linear-gradient(160deg, var(--surface-deep) 0%, #c8c0b4 60%, var(--surface-primary) 100%); opacity: 0.7;"></div>
+            <span class="phase-visual-label" style="color: rgba(27,42,74,0.35);">Brand Identity</span>
           </div>
         </div>
       </div>
@@ -245,36 +340,42 @@
         <div class="reveal">
           <p class="section-label">Web Design</p>
           <h2 class="phase-headline">How we build your site.</h2>
-          <p class="phase-intro">Every site we build starts with structure, not visuals. We need to understand how your customers think and what your business needs to communicate before a single screen is designed. The platform — whether that is custom development, Shopify, Squarespace, or something else — follows that understanding.</p>
+          <p class="phase-intro">Every site we build starts with structure, not visuals. We need to understand how your customers think and what your business needs to communicate before a single screen is designed. The platform follows that understanding. Whether that means custom development, Shopify, Squarespace, or something else, we choose what fits the project.</p>
         </div>
-        <div class="process-steps">
-          <div class="process-step reveal">
-            <span class="step-number">01</span>
-            <div class="step-content">
-              <h3 class="step-title">Brief</h3>
-              <p class="step-desc">We define goals, audience, key pages, and the actions you need visitors to take. Structure comes before design.</p>
+        <div class="phase-body">
+          <div class="process-steps">
+            <div class="process-step reveal">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h3 class="step-title">Brief</h3>
+                <p class="step-desc">We define goals, audience, key pages, and the actions you need visitors to take. Structure comes before design.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h3 class="step-title">Wireframe</h3>
+                <p class="step-desc">We map the architecture and content flow before any visual decisions are made. This is where the site earns its logic.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h3 class="step-title">Design</h3>
+                <p class="step-desc">We build the visual layer in full alignment with your brand, across every screen, every state, every detail considered.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h3 class="step-title">Build and launch</h3>
+                <p class="step-desc">Development, QA, and a full handoff. You own the site and know how to run it from day one.</p>
+              </div>
             </div>
           </div>
-          <div class="process-step reveal">
-            <span class="step-number">02</span>
-            <div class="step-content">
-              <h3 class="step-title">Wireframe</h3>
-              <p class="step-desc">We map the architecture and content flow before any visual decisions are made. This is where the site earns its logic.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">03</span>
-            <div class="step-content">
-              <h3 class="step-title">Design</h3>
-              <p class="step-desc">We build the visual layer in full alignment with your brand, across every screen, every state, every detail considered.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">04</span>
-            <div class="step-content">
-              <h3 class="step-title">Build and launch</h3>
-              <p class="step-desc">Development, QA, and a full handoff. You own the site and know how to run it from day one.</p>
-            </div>
+          <div class="phase-visual reveal" style="background: var(--ink);">
+            <div class="phase-visual-texture" style="background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 60%, var(--ink-light) 100%); opacity: 0.6;"></div>
+            <span class="phase-visual-label" style="color: rgba(255,255,255,0.25);">Web Design</span>
           </div>
         </div>
       </div>
@@ -288,34 +389,40 @@
           <h2 class="phase-headline">How we bring products to life.</h2>
           <p class="phase-intro">Product sourcing involves more moving parts than most clients expect. Concept, vendor selection, production, and fulfillment all have to be managed tightly for the end result to hold up. We oversee the entire process so the product that arrives matches what was approved.</p>
         </div>
-        <div class="process-steps">
-          <div class="process-step reveal">
-            <span class="step-number">01</span>
-            <div class="step-content">
-              <h3 class="step-title">Concept</h3>
-              <p class="step-desc">We define what the product is, what it should say, and how it fits into the wider brand before anything is ordered.</p>
+        <div class="phase-body">
+          <div class="process-steps">
+            <div class="process-step reveal">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h3 class="step-title">Concept</h3>
+                <p class="step-desc">We define what the product is, what it should say, and how it fits into the wider brand before anything is ordered.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h3 class="step-title">Sourcing</h3>
+                <p class="step-desc">We identify and vet vendors based on quality, lead times, and fit. You get honest options with clear trade-offs, not just one route.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h3 class="step-title">Production</h3>
+                <p class="step-desc">We design the product and its packaging, manage proofing rounds, and oversee manufacturing so what gets made matches what was approved.</p>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h3 class="step-title">Delivery</h3>
+                <p class="step-desc">Final quality check, fulfillment coordination, and full production documentation so future reorders come through us cleanly.</p>
+              </div>
             </div>
           </div>
-          <div class="process-step reveal">
-            <span class="step-number">02</span>
-            <div class="step-content">
-              <h3 class="step-title">Sourcing</h3>
-              <p class="step-desc">We identify and vet vendors based on quality, lead times, and fit. You get honest options with clear trade-offs, not just one route.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">03</span>
-            <div class="step-content">
-              <h3 class="step-title">Production</h3>
-              <p class="step-desc">We design the product and its packaging, manage proofing rounds, and oversee manufacturing so what gets made matches what was approved.</p>
-            </div>
-          </div>
-          <div class="process-step reveal">
-            <span class="step-number">04</span>
-            <div class="step-content">
-              <h3 class="step-title">Delivery</h3>
-              <p class="step-desc">Final quality check, fulfillment coordination, and full production documentation so future reorders come through us cleanly.</p>
-            </div>
+          <div class="phase-visual reveal" style="background: var(--surface-deep);">
+            <div class="phase-visual-texture" style="background: linear-gradient(160deg, #c8c0b4 0%, var(--surface-deep) 50%, #bbb0a4 100%); opacity: 0.8;"></div>
+            <span class="phase-visual-label" style="color: rgba(27,42,74,0.35);">Product Sourcing</span>
           </div>
         </div>
       </div>
