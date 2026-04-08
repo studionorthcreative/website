@@ -90,7 +90,6 @@
       grid-template-columns: 1fr 1fr;
       gap: var(--gap-xl);
       align-items: center;
-      margin-top: var(--gap-xl);
     }
     .work-intro-body {
       font-size: 16px;
@@ -168,28 +167,24 @@
       color: rgba(255, 255, 255, 0.55);
       max-width: 640px;
     }
-    .work-pov-rule {
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      margin: var(--gap-xl) 0;
-    }
-    .work-pov-cta {
+    /* --- Light CTA section --- */
+    .work-cta {
+      padding: var(--section-lg) 0;
+      background: var(--surface-primary);
       text-align: center;
-      max-width: 560px;
-      margin: 0 auto;
     }
-    .work-pov-cta-headline {
+    .work-cta-headline {
       font-family: var(--font-serif);
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 500;
       line-height: 1.1;
       letter-spacing: -0.02em;
-      color: rgba(255, 255, 255, 0.92);
+      color: var(--ink-deep);
       margin-bottom: var(--gap-md);
     }
-    .work-pov-cta-sub {
+    .work-cta-sub {
       font-size: 18px;
-      color: rgba(255, 255, 255, 0.55);
+      color: var(--neutral-600);
       margin-bottom: var(--gap-lg);
     }
 
@@ -259,9 +254,9 @@
 
     <section class="work-intro">
       <div class="container">
+        <p class="section-label reveal" style="margin-bottom:var(--gap-lg);">How We Work</p>
         <div class="work-intro-inner">
           <div class="reveal">
-            <p class="section-label">How We Work</p>
             <h2 class="section-headline" style="margin-bottom:var(--gap-lg);">We keep the project list tight for a reason.</h2>
             <div class="work-intro-body">
               <p>We do not take on every project that comes our way. We work with a focused number of clients at a time because that is the only way to do this kind of work properly. When we take on a project, we are responsible for all of it: the logo, the website, and the way the brand holds together across every surface it touches.</p>
@@ -369,11 +364,15 @@
           <p class="work-pov-quote">"Good work is not just well-designed. It is coherent."</p>
           <p class="work-pov-body">Most projects we see before taking them on have the same problem. They look scattered. Not because the people behind them were not talented, but because no one was looking at the whole picture. These projects exist because someone decided that was worth fixing.</p>
         </div>
-        <hr class="work-pov-rule">
-        <div class="work-pov-cta reveal">
-          <h2 class="work-pov-cta-headline">Ready to add yours?</h2>
-          <p class="work-pov-cta-sub">Each project started with a conversation. Tell us about yours.</p>
-          <button type="button" class="btn btn-primary btn-light open-contact-modal">Start a Project</button>
+      </div>
+    </section>
+
+    <section class="work-cta">
+      <div class="container-narrow">
+        <div class="reveal">
+          <h2 class="work-cta-headline">Ready to add yours?</h2>
+          <p class="work-cta-sub">Each project started with a conversation. Tell us about yours.</p>
+          <button type="button" class="btn btn-primary open-contact-modal">Start a Project</button>
         </div>
       </div>
     </section>
