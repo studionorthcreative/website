@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Design — StudioNorth</title>
-  <meta name="description" content="StudioNorth builds custom websites that feel premium, convert visitors, and give your brand a home that represents what you actually do.">
-  <link rel="canonical" href="https://studionorth.co/services/web-design/">
+  <title>Process — StudioNorth</title>
+  <meta name="description" content="How StudioNorth works — from the first inquiry through delivery and follow-up, every step built to keep the work clear, considered, and moving forward.">
+  <link rel="canonical" href="https://studionorth.co/process/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -13,8 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../styles.css">
   <style>
+    /* Page hero */
     .page-hero {
       padding-top: clamp(140px, 16vw, 200px);
       padding-bottom: var(--section-md);
@@ -29,15 +30,10 @@
       background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
     }
-    .page-hero-inner { position: relative; z-index: 1; }
-    .page-hero-num {
-      font-family: var(--font-serif);
-      font-size: 80px;
-      font-weight: 400;
-      color: var(--surface-deep);
-      line-height: 1;
-      display: block;
-      margin-bottom: var(--gap-xs);
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
     }
     .page-hero-headline {
       font-family: var(--font-serif);
@@ -53,129 +49,63 @@
       font-size: clamp(17px, 1.5vw, 20px);
       line-height: 1.55;
       color: var(--neutral-600);
-      max-width: 500px;
+      max-width: 540px;
     }
-    .includes-section {
+
+    /* Phase sections */
+    .phase-section {
       padding: var(--section-lg) 0;
-      background: var(--white);
+      scroll-margin-top: 80px;
     }
-    .includes-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap-xl);
-      align-items: start;
-      margin-top: var(--gap-xl);
-    }
-    .includes-body {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--neutral-600);
-      margin-bottom: var(--gap-md);
-    }
-    .includes-list li {
-      font-size: 15px;
-      color: var(--ink);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--surface-light);
-      padding-left: 20px;
-      position: relative;
-      line-height: 1.4;
-    }
-    .includes-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 5px;
-      height: 5px;
-      background: var(--surface-deep);
-      border-radius: 50%;
-    }
-    .includes-visual {
-      aspect-ratio: 4/5;
-      background: var(--ink);
-      border-radius: 8px;
-      display: flex;
-      align-items: flex-end;
-      padding: var(--gap-lg);
-      position: relative;
-      overflow: hidden;
-    }
-    .includes-visual-texture {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 60%, var(--ink-light) 100%);
-      opacity: 0.6;
-    }
-    .includes-visual-label {
-      font-size: 11px;
+    .phase-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 4vw, 48px);
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(255, 255, 255, 0.25);
-      position: relative;
-      z-index: 1;
+      line-height: 1.1;
+      color: var(--ink-deep);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--gap-lg);
+      margin-top: var(--gap-xs);
     }
-    .for-section {
-      padding: var(--section-md) 0;
-      background: var(--surface-light);
+    .phase-intro {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--neutral-600);
+      max-width: 580px;
+      margin-bottom: var(--gap-xl);
+      padding-left: var(--gap-md);
+      border-left: 2px solid var(--surface-deep);
     }
-    .for-inner {
+
+    /* After delivery callouts */
+    .post-callouts {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--gap-xl);
-      align-items: start;
-      margin-top: var(--gap-lg);
-    }
-    .for-body {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--neutral-600);
-      margin-bottom: var(--gap-md);
-    }
-    .for-list li {
-      font-size: 15px;
-      color: var(--neutral-600);
-      padding: 12px 0;
-      border-bottom: 1px solid var(--surface-deep);
-      line-height: 1.5;
-    }
-    .for-list li:first-child { border-top: 1px solid var(--surface-deep); }
-    .outcomes-section {
-      padding: var(--section-lg) 0;
-      background: var(--surface-primary);
-    }
-    .outcomes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: var(--gap-lg);
       margin-top: var(--gap-xl);
     }
-    .outcome-card {
+    .post-callout {
       padding: var(--gap-lg) 0;
       border-top: 2px solid var(--surface-deep);
       transition: border-color var(--duration-fast) var(--ease);
     }
-    .outcome-card:hover { border-color: var(--ink); }
-    .outcome-title {
+    .post-callout:hover { border-color: var(--ink); }
+    .post-callout-title {
       font-family: var(--font-serif);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 500;
       color: var(--ink-deep);
       margin-bottom: var(--gap-sm);
       line-height: 1.2;
     }
-    .outcome-desc {
+    .post-callout-desc {
       font-size: 14px;
       line-height: 1.65;
       color: var(--neutral-600);
     }
+
     @media (max-width: 768px) {
-      .includes-inner, .for-inner { grid-template-columns: 1fr; }
-      .includes-visual { aspect-ratio: 4/3; }
-      .outcomes-grid { grid-template-columns: 1fr; }
-      .page-hero-num { font-size: 56px; }
+      .post-callouts { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -189,7 +119,7 @@
         <a href="/">Home</a>
         <a href="/work/">Work</a>
         <a href="/services/">Services</a>
-        <a href="/process/">Process</a>
+        <a href="/process/" class="active">Process</a>
         <a href="/about/">About</a>
         <a href="/#faq">FAQ</a>
         <a href="/audit">Website Audit</a>
@@ -220,67 +150,102 @@
     <section class="page-hero">
       <div class="container">
         <div class="page-hero-inner reveal">
-          <span class="page-hero-num">02</span>
-          <p class="section-label">Service</p>
-          <h1 class="page-hero-headline">Web Design</h1>
-          <p class="page-hero-sub">A site that earns its place in your brand. Built for your business, whether that means custom development, Shopify, Squarespace, or another platform. Conversion focused and made to represent what you actually do.</p>
-          <div style="margin-top:var(--gap-lg);">
-            <button type="button" class="btn btn-primary open-contact-modal">Start a Project</button>
-          </div>
+          <p class="section-label">Process</p>
+          <h1 class="page-hero-headline">How we work.</h1>
+          <p class="page-hero-sub">From the first inquiry to delivery and follow-up, every step is built to keep the work clear, considered, and moving in the right direction.</p>
         </div>
       </div>
     </section>
 
-    <section class="includes-section">
+    <!-- Before We Begin -->
+    <section class="phase-section" style="background: var(--white);" id="before-we-begin">
       <div class="container">
         <div class="reveal">
-          <p class="section-label">What's Included</p>
-          <h2 class="section-headline">Built for your business.</h2>
+          <p class="section-label">Before We Begin</p>
+          <h2 class="phase-headline">How it starts.</h2>
+          <p class="phase-intro">Most clients come to us with a clear need and a less clear idea of where to start. That is fine. We take time at the front of every project to make sure we understand what you are building and whether we are the right fit to help you build it.</p>
         </div>
-        <div class="includes-inner">
-          <div class="reveal">
-            <p class="includes-body">We design and build websites around your business. Whether that means custom development, Shopify, Squarespace, or another platform, the platform follows the goal.</p>
-            <ul class="includes-list">
-              <li>Custom responsive design</li>
-              <li>Conversion-optimised page structure</li>
-              <li>SEO foundation and metadata</li>
-              <li>CMS setup and documentation</li>
-              <li>Cross-browser and device QA</li>
-              <li>Launch support and training</li>
-            </ul>
+        <div class="process-steps">
+          <div class="process-step reveal">
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <h3 class="step-title">Inquiry</h3>
+              <p class="step-desc">You reach out through the contact form or run the website audit. We review every submission and respond within 48 hours.</p>
+            </div>
           </div>
-          <div class="includes-visual reveal">
-            <div class="includes-visual-texture"></div>
-            <span class="includes-visual-label">Web Design</span>
+          <div class="process-step reveal">
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <h3 class="step-title">Discovery conversation</h3>
+              <p class="step-desc">A focused call to understand your business, your goals, and what success looks like for this project. No pitch, just questions.</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="for-section">
-      <div class="container">
-        <div class="for-inner">
-          <div class="reveal">
-            <p class="section-label">Who It's For</p>
-            <h2 class="section-headline">The right fit.</h2>
+          <div class="process-step reveal">
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <h3 class="step-title">Proposal</h3>
+              <p class="step-desc">If it is a good fit, we put together a clear scope, timeline, and investment. What you see in the proposal is what you pay.</p>
+            </div>
           </div>
-          <div class="reveal">
-            <p class="for-body">Great websites are not about aesthetics alone. They are about communicating clearly, building trust quickly, and making it easy for the right people to take the next step.</p>
-            <ul class="for-list">
-              <li>Service businesses that rely on their site for leads</li>
-              <li>Brands whose current site no longer reflects their quality</li>
-              <li>Businesses launching for the first time and doing it properly</li>
-            </ul>
+          <div class="process-step reveal">
+            <span class="step-number">04</span>
+            <div class="step-content">
+              <h3 class="step-title">Kickoff</h3>
+              <p class="step-desc">Once the project is confirmed, we schedule a kickoff call and get to work. Every project starts with a shared understanding of what we are building and why.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="process">
+    <!-- Brand Identity -->
+    <section class="phase-section" style="background: var(--surface-light);" id="brand-identity">
       <div class="container">
-        <div class="process-header reveal">
-          <p class="section-label">How It Works</p>
-          <h2 class="section-headline">The process.</h2>
+        <div class="reveal">
+          <p class="section-label">Brand Identity</p>
+          <h2 class="phase-headline">How we build your brand.</h2>
+          <p class="phase-intro">Brand identity is the most research-intensive of our services. Before anything is designed, we spend time understanding your business, your audience, and the visual territory you need to own. That foundation is what makes the work last.</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step reveal">
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <h3 class="step-title">Discovery</h3>
+              <p class="step-desc">We learn your business, your competitors, and what your brand needs to communicate. This shapes everything that follows.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <h3 class="step-title">Direction</h3>
+              <p class="step-desc">We present a clear creative direction before any design begins. Agreed direction means no wasted rounds later.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <h3 class="step-title">Design</h3>
+              <p class="step-desc">Logo, color, typography, and the full identity system, built in alignment with the approved direction. Every element considered, every decision documented.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="step-number">04</span>
+            <div class="step-content">
+              <h3 class="step-title">Delivery</h3>
+              <p class="step-desc">Revision rounds, final production files, and a brand guidelines document so the system can be used consistently from day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Web Design -->
+    <section class="phase-section" style="background: var(--white);" id="web-design">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Web Design</p>
+          <h2 class="phase-headline">How we build your site.</h2>
+          <p class="phase-intro">Every site we build starts with structure, not visuals. We need to understand how your customers think and what your business needs to communicate before a single screen is designed. The platform — whether that is custom development, Shopify, Squarespace, or something else — follows that understanding.</p>
         </div>
         <div class="process-steps">
           <div class="process-step reveal">
@@ -294,45 +259,92 @@
             <span class="step-number">02</span>
             <div class="step-content">
               <h3 class="step-title">Wireframe</h3>
-              <p class="step-desc">We map the architecture and content flow before touching visuals. This is where the site earns its structure.</p>
+              <p class="step-desc">We map the architecture and content flow before any visual decisions are made. This is where the site earns its logic.</p>
             </div>
           </div>
           <div class="process-step reveal">
             <span class="step-number">03</span>
             <div class="step-content">
               <h3 class="step-title">Design</h3>
-              <p class="step-desc">We build the visual layer in full alignment with your brand. Every screen, every state, every detail considered.</p>
+              <p class="step-desc">We build the visual layer in full alignment with your brand, across every screen, every state, every detail considered.</p>
             </div>
           </div>
           <div class="process-step reveal">
             <span class="step-number">04</span>
             <div class="step-content">
-              <h3 class="step-title">Launch</h3>
-              <p class="step-desc">We QA, hand off, and walk you through everything. You own the site and know how to run it from day one.</p>
+              <h3 class="step-title">Build and launch</h3>
+              <p class="step-desc">Development, QA, and a full handoff. You own the site and know how to run it from day one.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="outcomes-section">
+    <!-- Product Sourcing -->
+    <section class="phase-section" style="background: var(--surface-primary);" id="product-sourcing">
       <div class="container">
         <div class="reveal">
-          <p class="section-label">What You Walk Away With</p>
-          <h2 class="section-headline">The outcome.</h2>
+          <p class="section-label">Product Sourcing</p>
+          <h2 class="phase-headline">How we bring products to life.</h2>
+          <p class="phase-intro">Product sourcing involves more moving parts than most clients expect. Concept, vendor selection, production, and fulfillment all have to be managed tightly for the end result to hold up. We oversee the entire process so the product that arrives matches what was approved.</p>
         </div>
-        <div class="outcomes-grid">
-          <div class="outcome-card reveal">
-            <h3 class="outcome-title">A site that converts</h3>
-            <p class="outcome-desc">Designed with clear hierarchy and intentional calls to action so visitors know what to do next and feel confident doing it.</p>
+        <div class="process-steps">
+          <div class="process-step reveal">
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <h3 class="step-title">Concept</h3>
+              <p class="step-desc">We define what the product is, what it should say, and how it fits into the wider brand before anything is ordered.</p>
+            </div>
           </div>
-          <div class="outcome-card reveal">
-            <h3 class="outcome-title">Full ownership and control</h3>
-            <p class="outcome-desc">You own every file, every domain, every account. Nothing is locked behind a proprietary system or our ongoing involvement.</p>
+          <div class="process-step reveal">
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <h3 class="step-title">Sourcing</h3>
+              <p class="step-desc">We identify and vet vendors based on quality, lead times, and fit. You get honest options with clear trade-offs, not just one route.</p>
+            </div>
           </div>
-          <div class="outcome-card reveal">
-            <h3 class="outcome-title">A platform built to grow</h3>
-            <p class="outcome-desc">Clean structure and solid SEO foundations mean your site can expand with your business without starting over.</p>
+          <div class="process-step reveal">
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <h3 class="step-title">Production</h3>
+              <p class="step-desc">We design the product and its packaging, manage proofing rounds, and oversee manufacturing so what gets made matches what was approved.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="step-number">04</span>
+            <div class="step-content">
+              <h3 class="step-title">Delivery</h3>
+              <p class="step-desc">Final quality check, fulfillment coordination, and full production documentation so future reorders come through us cleanly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- After Delivery -->
+    <section class="phase-section" style="background: var(--surface-light);" id="after-delivery">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">After Delivery</p>
+          <h2 class="phase-headline">What happens after handoff.</h2>
+          <p class="phase-intro">A project closing is not the end of the relationship. We follow up, make sure everything is working, and remain available during the transition period so nothing falls through the cracks.</p>
+        </div>
+        <div class="post-callouts">
+          <div class="post-callout reveal">
+            <h3 class="post-callout-title">Files and documentation</h3>
+            <p class="post-callout-desc">Everything is delivered clean, labelled, and organised. No hunting for assets or wondering what version is final.</p>
+          </div>
+          <div class="post-callout reveal">
+            <h3 class="post-callout-title">Web training</h3>
+            <p class="post-callout-desc">For website projects, we walk you through the CMS, admin access, and everything you need to run the site independently from day one.</p>
+          </div>
+          <div class="post-callout reveal">
+            <h3 class="post-callout-title">Launch check-in</h3>
+            <p class="post-callout-desc">We follow up after delivery or launch to catch anything that needs attention before the project fully closes.</p>
+          </div>
+          <div class="post-callout reveal">
+            <h3 class="post-callout-title">Ongoing availability</h3>
+            <p class="post-callout-desc">We remain available for questions in the weeks after handoff. If something is unclear or needs a small adjustment, you can reach us.</p>
           </div>
         </div>
       </div>
@@ -341,9 +353,9 @@
     <section class="final-cta">
       <div class="container-narrow">
         <div class="final-cta-content reveal">
-          <h2 class="final-cta-headline">Ready for a site that works as hard as you do?</h2>
-          <p class="final-cta-sub">Tell us what you are building and we will tell you how we can help.</p>
-          <button type="button" class="btn btn-primary btn-light open-contact-modal">Start a Project</button>
+          <h2 class="final-cta-headline">Ready to get started?</h2>
+          <p class="final-cta-sub">Tell us where you are and what you are building. We will tell you what makes sense.</p>
+          <button type="button" class="btn btn-primary btn-light open-contact-modal">Start the Conversation</button>
         </div>
       </div>
     </section>
@@ -382,7 +394,7 @@
           <select id="field-service" name="service" class="form-input form-select">
             <option value="" disabled selected>Select a service</option>
             <option value="brand-identity">Brand Identity</option>
-            <option value="web-design" selected>Web Design</option>
+            <option value="web-design">Web Design</option>
             <option value="product-sourcing">Product Sourcing</option>
             <option value="full-package">Full Brand Package</option>
             <option value="not-sure">Not Sure Yet</option>
@@ -455,6 +467,6 @@
     </div>
   </footer>
 
-  <script src="../../script.js"></script>
+  <script src="../script.js"></script>
 </body>
 </html>
