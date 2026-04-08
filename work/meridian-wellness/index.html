@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<!--
+  STUDIO NORTH — CASE STUDY TEMPLATE
+  ────────────────────────────────────
+  Master template for all client case study pages.
+  To create a new case study:
+    1. Copy this file to /work/[client-slug]/index.html
+    2. Replace: client name, descriptor, meta strip values, all cs-body copy
+    3. Update section-label text, cs-headline text, and cs-break-quote
+    4. Swap visual gradient treatments to match the service palette for that client
+    5. Update the Next Project stub at the bottom
+    6. Update <title>, meta description, and canonical URL in <head>
+  CSS classes prefixed cs- are case-study-specific and safe to reuse unchanged.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian Wellness — StudioNorth</title>
+  <meta name="description" content="How StudioNorth rebuilt the Meridian Wellness brand and website so the look finally matched the quality of the practice behind it.">
+  <link rel="canonical" href="https://studionorth.co/work/meridian-wellness/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#1B2A4A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    /* ===================================
+       CASE STUDY STYLES
+       cs- prefix throughout — safe to
+       reuse on all future case study pages
+       =================================== */
+
+    /* Hero */
+    .cs-hero {
+      padding-top: clamp(140px, 16vw, 200px);
+      padding-bottom: var(--section-md);
+      background: var(--surface-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .cs-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-xl);
+      align-items: center;
+    }
+    .cs-back {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: var(--gap-md);
+      transition: color var(--duration-fast) var(--ease);
+    }
+    .cs-back:hover { color: var(--ink-deep); }
+    .cs-hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6.5vw, 80px);
+      font-weight: 500;
+      line-height: 1.0;
+      color: var(--ink-deep);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--gap-md);
+      margin-top: var(--gap-sm);
+    }
+    .cs-hero-descriptor {
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: var(--neutral-600);
+      max-width: 480px;
+      margin-bottom: var(--gap-xl);
+    }
+    .cs-meta {
+      display: flex;
+      gap: var(--gap-xl);
+      padding-top: var(--gap-lg);
+      border-top: 1px solid var(--surface-deep);
+      flex-wrap: wrap;
+    }
+    .cs-meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--neutral-600);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .cs-meta-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-deep);
+      line-height: 1.4;
+    }
+    .cs-hero-visual {
+      aspect-ratio: 4/5;
+      background: var(--ink-deep);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--gap-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-visual-texture {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, var(--ink-deep) 0%, #253559 50%, var(--ink-deep) 100%);
+      opacity: 0.8;
+    }
+    .cs-hero-visual-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Content sections */
+    .cs-section {
+      padding: var(--section-lg) 0;
+    }
+    .cs-section-narrow {
+      max-width: 680px;
+    }
+    .cs-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--ink-deep);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--gap-lg);
+      margin-top: var(--gap-xs);
+    }
+    .cs-body {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--neutral-600);
+    }
+    .cs-body p + p {
+      margin-top: var(--gap-md);
+    }
+
+    /* Work sections — 2 column with visual */
+    .cs-work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-xl);
+      align-items: start;
+      margin-top: var(--gap-xl);
+    }
+    .cs-work-visual {
+      aspect-ratio: 4/5;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--gap-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-work-visual-texture {
+      position: absolute;
+      inset: 0;
+    }
+    .cs-work-visual-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Dark editorial break */
+    .cs-break {
+      padding: var(--section-lg) 0;
+      background: var(--ink-deep);
+    }
+    .cs-break-inner {
+      max-width: 780px;
+    }
+    .cs-break-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: var(--gap-lg);
+      display: block;
+    }
+    .cs-break-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.8vw, 50px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.3;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: var(--gap-lg);
+    }
+    .cs-break-sub {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      max-width: 540px;
+    }
+
+    /* Outcome callouts */
+    .cs-outcomes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-lg);
+      margin-top: var(--gap-xl);
+    }
+    .cs-outcome {
+      padding: var(--gap-lg) 0;
+      border-top: 2px solid var(--surface-deep);
+      transition: border-color var(--duration-fast) var(--ease);
+    }
+    .cs-outcome:hover { border-color: var(--ink); }
+    .cs-outcome-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink-deep);
+      margin-bottom: var(--gap-sm);
+      line-height: 1.2;
+    }
+    .cs-outcome-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--neutral-600);
+    }
+
+    /* Testimonial */
+    .cs-testimonial {
+      padding: var(--section-lg) 0;
+      background: var(--ink-deep);
+    }
+    .cs-testimonial-inner {
+      max-width: 760px;
+    }
+    .cs-testimonial-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: var(--gap-lg);
+      display: block;
+    }
+    .cs-testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: var(--gap-lg);
+    }
+    .cs-testimonial-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      display: block;
+    }
+    .cs-testimonial-role {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* Next project */
+    .cs-next {
+      padding: var(--section-md) 0;
+      background: var(--surface-primary);
+      border-top: 1px solid var(--surface-deep);
+    }
+    .cs-next-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+    }
+    .cs-next-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--neutral-600);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .cs-next-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 500;
+      color: var(--ink-deep);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .cs-next-tag {
+      font-size: 13px;
+      color: var(--neutral-600);
+      margin-top: 6px;
+      display: block;
+    }
+    .cs-next-arrow {
+      font-size: 28px;
+      color: var(--neutral-600);
+      transition: transform var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+      flex-shrink: 0;
+    }
+    .cs-next-link:hover .cs-next-arrow {
+      transform: translateX(6px);
+      color: var(--ink-deep);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .cs-hero-inner { grid-template-columns: 1fr; }
+      .cs-hero-visual { display: none; }
+      .cs-work-grid { grid-template-columns: 1fr; }
+      .cs-work-visual { aspect-ratio: 4/3; }
+      .cs-outcomes { grid-template-columns: 1fr; }
+      .cs-next-link { flex-direction: column; align-items: flex-start; gap: var(--gap-md); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">STUDIONORTH</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/work/" class="active">Work</a>
+        <a href="/services/">Services</a>
+        <a href="/process/">Process</a>
+        <a href="/about/">About</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/audit">Website Audit</a>
+      </div>
+      <button type="button" class="btn btn-primary nav-cta open-contact-modal">Start a Project</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/work/" class="mobile-link">Work</a>
+      <a href="/services/" class="mobile-link">Services</a>
+      <a href="/process/" class="mobile-link">Process</a>
+      <a href="/about/" class="mobile-link">About</a>
+      <a href="/#faq" class="mobile-link">FAQ</a>
+      <a href="/audit" class="mobile-link">Website Audit</a>
+      <button type="button" class="btn btn-primary mobile-cta open-contact-modal">Start a Project</button>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ─── HERO ─── -->
+    <section class="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner reveal">
+          <div class="cs-hero-content">
+            <a href="/work/" class="cs-back">&#8592; Work</a>
+            <p class="section-label">Case Study</p>
+            <h1 class="cs-hero-headline">Meridian Wellness</h1>
+            <p class="cs-hero-descriptor">A wellness practice rebuilt so the brand finally matched the quality of the work behind it.</p>
+            <div class="cs-meta">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Industry</span>
+                <span class="cs-meta-value">Wellness</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Services</span>
+                <span class="cs-meta-value">Brand Identity<br>Web Design</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Year</span>
+                <span class="cs-meta-value">2024</span>
+              </div>
+            </div>
+          </div>
+          <div class="cs-hero-visual">
+            <div class="cs-hero-visual-texture"></div>
+            <span class="cs-hero-visual-label">Meridian Wellness</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── THE CLIENT ─── -->
+    <section class="cs-section" style="background: var(--white);">
+      <div class="container">
+        <div class="cs-section-narrow reveal">
+          <p class="section-label">The Client</p>
+          <h2 class="cs-headline">A practice that had outgrown its brand.</h2>
+          <div class="cs-body">
+            <p>Meridian Wellness is a wellness practice built on the belief that good health is earned through intention, not accident. The team had spent years developing a reputation for careful, considered work with their clients. They were known by the people who had experienced what they did. The problem was what happened before that point.</p>
+            <p>When a potential client encountered Meridian for the first time, online or otherwise, they were not meeting the practice at its best. They were meeting a brand that had not kept pace with the work. And a brand that does not reflect the quality of what it represents costs the business in every moment that matters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── THE PROBLEM ─── -->
+    <section class="cs-section" style="background: var(--surface-light);">
+      <div class="container">
+        <div class="cs-section-narrow reveal">
+          <p class="section-label">The Problem</p>
+          <h2 class="cs-headline">A brand assembled in pieces.</h2>
+          <div class="cs-body">
+            <p>When a potential client encountered Meridian online, they were met with a visual identity that had been patched together over time. The logo from one era, the website from another, the print materials from a third. No single element was broken. But nothing worked together either.</p>
+            <p>The brand communicated effort without communicating intention. For a practice built on trust, expertise, and a particular kind of attention, that incoherence was costing them in the moments that mattered most. The first impression should have done the qualifying. Instead it was raising questions the practice then had to answer in person.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIRECTION ─── -->
+    <section class="cs-section" style="background: var(--white);">
+      <div class="container">
+        <div class="cs-section-narrow reveal">
+          <p class="section-label">Direction</p>
+          <h2 class="cs-headline">Calm, considered, and built to hold together.</h2>
+          <div class="cs-body">
+            <p>The brief was to build a brand that communicates confidence without coldness. Meridian's work is human and precise, and the visual system needed to carry both of those qualities at once. Not clinical. Not soft. Something that felt like a practice that takes what it does seriously without making that feel inaccessible.</p>
+            <p>We started from the mark and worked outward, making sure every decision in color, type, structure, and space was something the whole system could sustain. The goal was not to make Meridian look different. It was to make it finally look like itself.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DARK EDITORIAL BREAK ─── -->
+    <section class="cs-break">
+      <div class="container">
+        <div class="cs-break-inner reveal">
+          <span class="cs-break-label">The Insight</span>
+          <p class="cs-break-quote">The work had already earned the trust. The brand just needed to show it.</p>
+          <p class="cs-break-sub">What already existed at Meridian was excellent. The practice, the people, and the quality of the work. What it needed was a visual system that communicated that before anyone walked through the door.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── BRAND IDENTITY ─── -->
+    <section class="cs-section" style="background: var(--surface-light);">
+      <div class="container">
+        <div class="cs-section-narrow reveal" style="margin-bottom: var(--gap-xl);">
+          <p class="section-label">Brand Identity</p>
+          <h2 class="cs-headline">A system built to scale.</h2>
+        </div>
+        <div class="cs-work-grid">
+          <div class="cs-body reveal">
+            <p>The identity work covered the full range. A refined logo mark grounded in restraint and clarity. A color palette that communicates calm authority without reading as sterile. A typographic system with enough hierarchy to carry the full range of the practice's communications. Every element was tested against the contexts that mattered most to Meridian: digital, print, and the clinical environments where the brand had to work without drawing attention to itself.</p>
+            <p>The work was delivered with a brand guidelines document that gave the team everything they needed to use the system consistently without external support. Not a file dump. A working reference for a brand they could own and extend.</p>
+          </div>
+          <div class="cs-work-visual reveal" style="background: var(--surface-deep);">
+            <div class="cs-work-visual-texture" style="background: linear-gradient(160deg, var(--surface-deep) 0%, #c8c0b4 60%, var(--surface-primary) 100%); opacity: 0.7;"></div>
+            <span class="cs-work-visual-label" style="color: rgba(27,42,74,0.35);">Brand Identity</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── WEB DESIGN ─── -->
+    <section class="cs-section" style="background: var(--white);">
+      <div class="container">
+        <div class="cs-section-narrow reveal" style="margin-bottom: var(--gap-xl);">
+          <p class="section-label">Web Design</p>
+          <h2 class="cs-headline">A site that leads with the practice.</h2>
+        </div>
+        <div class="cs-work-grid">
+          <div class="cs-body reveal">
+            <p>The site was designed around a single question: what does a prospective client need to understand before they decide to reach out? The structure was built from that answer inward. Clear hierarchy, deliberate pacing, and a visual language that carried the new brand without competing with the content.</p>
+            <p>Someone who was not the right fit should know that quickly. Someone who was the right fit should feel it. The site now functions as a first impression and a qualification tool at once, working for Meridian before anyone on the team has had a chance to speak.</p>
+          </div>
+          <div class="cs-work-visual reveal" style="background: var(--ink);">
+            <div class="cs-work-visual-texture" style="background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 60%, var(--ink-light) 100%); opacity: 0.6;"></div>
+            <span class="cs-work-visual-label" style="color: rgba(255,255,255,0.25);">Web Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── THE OUTCOME ─── -->
+    <section class="cs-section" style="background: var(--surface-primary);">
+      <div class="container">
+        <div class="cs-section-narrow reveal">
+          <p class="section-label">The Outcome</p>
+          <h2 class="cs-headline">One brand. One business.</h2>
+          <div class="cs-body">
+            <p>Meridian launched the new brand and website together. The practice now presents consistently across every surface it touches. The identity, site, printed materials, and digital communications all work from the same visual language. The team can extend and manage the system without it drifting from what was built.</p>
+            <p>What existed before as a collection of assembled pieces exists now as one coherent thing. The brand reflects the practice. The first impression reflects the quality of the work. And the conversations that matter most start from a stronger position.</p>
+          </div>
+        </div>
+        <div class="cs-outcomes">
+          <div class="cs-outcome reveal">
+            <h3 class="cs-outcome-title">A cohesive visual identity</h3>
+            <p class="cs-outcome-desc">Every element from the logo to the brand guidelines was built to work together and hold up over time, across every surface the practice uses.</p>
+          </div>
+          <div class="cs-outcome reveal">
+            <h3 class="cs-outcome-title">A site that works as a first impression</h3>
+            <p class="cs-outcome-desc">The website now reflects the quality of the practice and qualifies the right visitors before anyone on the team has to get involved.</p>
+          </div>
+          <div class="cs-outcome reveal">
+            <h3 class="cs-outcome-title">A system the team can manage</h3>
+            <p class="cs-outcome-desc">Delivered with documentation and training so the practice can maintain and extend the brand independently without it drifting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TESTIMONIAL ─── -->
+    <section class="cs-testimonial">
+      <div class="container">
+        <div class="cs-testimonial-inner reveal">
+          <span class="cs-testimonial-label">In Their Words</span>
+          <p class="cs-testimonial-quote">"StudioNorth took our brand from looking like five different businesses to looking like the one we actually are. The cohesion across our website, packaging, and social presence is something we couldn't have achieved on our own."</p>
+          <span class="cs-testimonial-name">Sarah Mitchell</span>
+          <span class="cs-testimonial-role">Founder, Meridian Wellness</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── NEXT PROJECT (stub — update href when next case study is live) ─── -->
+    <section class="cs-next">
+      <div class="container">
+        <a href="#" class="cs-next-link reveal" aria-label="Next project: Harlow Interiors">
+          <div>
+            <span class="cs-next-label">Next Project</span>
+            <span class="cs-next-title">Harlow Interiors</span>
+            <span class="cs-next-tag">Interior Design &middot; Website</span>
+          </div>
+          <span class="cs-next-arrow">&#8594;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── FINAL CTA ─── -->
+    <section class="final-cta">
+      <div class="container-narrow">
+        <div class="final-cta-content reveal">
+          <h2 class="final-cta-headline">Ready to get started?</h2>
+          <p class="final-cta-sub">Tell us about your project and we will tell you how we can help.</p>
+          <button type="button" class="btn btn-primary btn-light open-contact-modal">Start the Conversation</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="modalTitle">Start a Project</h2>
+          <p class="modal-subtitle">Tell us about your vision. We'll get back to you within 48 hours.</p>
+        </div>
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close form">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-group">
+          <label for="field-name" class="form-label">Name <span class="required">*</span></label>
+          <input type="text" id="field-name" name="name" class="form-input" placeholder="Your full name" required autocomplete="name">
+          <p class="form-error" id="error-name"></p>
+        </div>
+        <div class="form-group">
+          <label for="field-email" class="form-label">Email <span class="required">*</span></label>
+          <input type="email" id="field-email" name="email" class="form-input" placeholder="you@company.com" required autocomplete="email">
+          <p class="form-error" id="error-email"></p>
+        </div>
+        <div class="form-group">
+          <label for="field-business" class="form-label">Business Name</label>
+          <input type="text" id="field-business" name="business" class="form-input" placeholder="Your company or brand name" autocomplete="organization">
+        </div>
+        <div class="form-group">
+          <label for="field-service" class="form-label">Service Interested In</label>
+          <select id="field-service" name="service" class="form-input form-select">
+            <option value="" disabled selected>Select a service</option>
+            <option value="brand-identity">Brand Identity</option>
+            <option value="web-design">Web Design</option>
+            <option value="product-sourcing">Product Sourcing</option>
+            <option value="full-package">Full Brand Package</option>
+            <option value="not-sure">Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="field-description" class="form-label">Tell Us About Your Project <span class="required">*</span></label>
+          <textarea id="field-description" name="description" class="form-input form-textarea" placeholder="What are you looking to build? What's the current state of your brand? Any timeline in mind?" required rows="4"></textarea>
+          <p class="form-error" id="error-description"></p>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit" id="formSubmit">
+          <span class="submit-text">Send Inquiry</span>
+          <span class="submit-loading" style="display:none;">
+            <svg class="spinner" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="40" stroke-dashoffset="10" stroke-linecap="round"/></svg>
+            Sending...
+          </span>
+        </button>
+        <p class="form-footer-note">We respect your privacy. Your information is only used to respond to your inquiry.</p>
+      </form>
+      <div class="form-success" id="formSuccess" style="display:none;">
+        <div class="success-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#1B2A4A" stroke-width="2"/><path d="M15 24l6 6 12-12" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="success-title">Message sent.</h3>
+        <p class="success-body">Thank you for reaching out. We'll review your project details and get back to you within 48 hours.</p>
+        <button type="button" class="btn btn-secondary" id="successClose">Close</button>
+      </div>
+      <div class="form-error-state" id="formError" style="display:none;">
+        <div class="error-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#B44" stroke-width="2"/><line x1="16" y1="16" x2="32" y2="32" stroke="#B44" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="16" x2="16" y2="32" stroke="#B44" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="error-title">Something went wrong.</h3>
+        <p class="error-body" id="errorMessage">Please try again or email us directly at contact.studionorthcreative@gmail.com</p>
+        <button type="button" class="btn btn-secondary" id="errorRetry">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">STUDIONORTH</a>
+          <p class="footer-descriptor">Design & Brand Studio</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <p class="footer-col-title">Studio</p>
+            <a href="/work/">Work</a>
+            <a href="/services/">Services</a>
+            <a href="/about/">About</a>
+            <a href="/audit">Website Audit</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Services</p>
+            <a href="/services/brand-identity/">Brand Identity</a>
+            <a href="/services/web-design/">Web Design</a>
+            <a href="/services/product-sourcing/">Product Sourcing</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Connect</p>
+            <a href="mailto:contact.studionorthcreative@gmail.com">Email</a>
+            <a href="https://www.instagram.com/studionorthcreative/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 StudioNorth Creative Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>
