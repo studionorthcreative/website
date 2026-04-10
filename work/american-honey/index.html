@@ -387,6 +387,14 @@
       transform: scale(1.04);
     }
 
+    .cs-meta-link {
+      text-decoration: underline;
+      font-style: italic;
+      color: var(--ink-deep);
+      transition: color var(--duration-fast) var(--ease);
+    }
+    .cs-meta-link:hover { color: var(--neutral-600); }
+
     /* Mobile */
     @media (max-width: 768px) {
       .cs-hero-inner { grid-template-columns: 1fr; }
@@ -458,6 +466,10 @@
               <div class="cs-meta-item">
                 <span class="cs-meta-label">Year</span>
                 <span class="cs-meta-value">2026</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Website</span>
+                <a href="https://www.americanhoneycreamery.com" target="_blank" rel="noopener noreferrer" class="cs-meta-value cs-meta-link">American Honey Creamery &amp; Coffee Co. | Official Website ↗</a>
               </div>
             </div>
           </div>
@@ -571,8 +583,8 @@
               <p>We also supported alignment between the website and the Clover app experience. Layout direction, visual hierarchy, and how the brand shows up in content that drives people to the app. When a customer moves from Instagram to the website to the app, it should all feel like the same brand. That is what this work was built to deliver.</p>
             </div>
           </div>
-          <div class="cs-work-visual reveal" style="padding: 0;">
-            <img src="/images/american-honey-app-icon.png" alt="American Honey Creamery and Coffee Co. app icon" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+          <div class="cs-work-visual reveal" style="padding: 0; background: transparent;">
+            <img src="/images/american-honey-app-icon.png" alt="American Honey Creamery and Coffee Co. app icon" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;">
           </div>
         </div>
       </div>
