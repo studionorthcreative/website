@@ -1,7 +1,6 @@
 import { Resend } from 'resend';
 import { runAudit } from './_engine.js';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const TO_EMAIL = process.env.CONTACT_EMAIL || 'contact.studionorthcreative@gmail.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'StudioNorth <onboarding@resend.dev>';
 
@@ -48,6 +47,11 @@ export default async function handler(req, res) {
 // ─── Lead notification ───────────────────────────────────────────────────────
 
 function sendLeadEmail(lead, audit) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('RESEND_API_KEY not set — skipping lead email');
+    return;
+  }
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const score = audit.overallScore ?? 0;
   const scoreLabel = audit.scoreLabel ?? '—';
   const displayUrl = audit.url.replace(/^https?:\/\//, '');
