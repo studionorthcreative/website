@@ -56,6 +56,26 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Work section — match /work page presentation */
+    .work {
+      background: var(--surface-primary);
+    }
+    .work .work-grid {
+      margin-top: 0;
+      gap: var(--gap-lg);
+    }
+    .work .work-info {
+      padding: 14px 0;
+    }
+    .work-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--neutral-600);
+      margin-top: 12px;
+      max-width: 360px;
+    }
+  </style>
 
   <!-- JSON-LD Structured Data: Organization -->
   <script type="application/ld+json">
@@ -311,15 +331,18 @@
   <!-- Selected Work -->
   <section class="work" id="work">
     <div class="container">
-      <p class="section-label reveal">Selected Work</p>
+      <div class="reveal" style="margin-bottom:var(--gap-xl);">
+        <p class="section-label">Selected Work</p>
+      </div>
       <div class="work-grid">
         <a href="/work/american-honey/" class="work-card work-card-large reveal">
           <div class="work-image">
             <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80" alt="Warm coffee shop interior with natural light" class="work-img" loading="lazy">
           </div>
           <div class="work-info">
-            <h3 class="work-title">American Honey Creamery &amp; Coffee Co.</h3>
             <span class="work-tag">Hospitality &middot; Brand + Web + Product</span>
+            <h3 class="work-title">American Honey Creamery &amp; Coffee Co.</h3>
+            <p class="work-desc">A multi-location creamery and coffee brand with a strong existing audience. We redesigned the site, tightened the brand system, and sourced branded packaging so the experience holds together from screen to in hand.</p>
           </div>
         </a>
         <a href="/work/magnitude5/" class="work-card reveal">
@@ -327,8 +350,9 @@
             <div class="work-placeholder" style="background: linear-gradient(150deg, #2D4A3A 0%, #1A2A3A 100%);"></div>
           </div>
           <div class="work-info">
-            <h3 class="work-title">Magnitude5</h3>
             <span class="work-tag">Wellness &middot; Web + Brand</span>
+            <h3 class="work-title">Magnitude5</h3>
+            <p class="work-desc">A wellness brand built around the founder's personal expertise. We gave it a platform that converts her credibility into clients.</p>
           </div>
         </a>
         <a href="/work/solo/" class="work-card reveal">
@@ -336,17 +360,19 @@
             <div class="work-placeholder" style="background: linear-gradient(150deg, #222222 0%, #111111 100%);"></div>
           </div>
           <div class="work-info">
+            <span class="work-tag">Streetwear &middot; Brand + Web + Product</span>
             <h3 class="work-title">Solo</h3>
-            <span class="work-tag">Streetwear &middot; Ecommerce + Brand</span>
+            <p class="work-desc">A streetwear and lifestyle brand with a clear identity and a storefront that was not keeping up with it. We rebuilt both from the ground up.</p>
           </div>
         </a>
-        <a href="#" class="work-card work-card-large reveal">
+        <a href="/work/stanced/" class="work-card work-card-large reveal">
           <div class="work-image">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=80" alt="A clean minimal premium product photograph on a white surface" class="work-img" loading="lazy">
+            <div class="work-placeholder" style="background: linear-gradient(150deg, #1C1A18 0%, #0D0B0A 100%);"></div>
           </div>
           <div class="work-info">
-            <h3 class="work-title">Sable & Co</h3>
-            <span class="work-tag">E-Commerce &middot; Brand + Product</span>
+            <span class="work-tag">Streetwear &middot; Brand + Web + Product</span>
+            <h3 class="work-title">Stanced</h3>
+            <p class="work-desc">A streetwear and lifestyle brand built around cultural authenticity. We handled brand direction, web design, product development, and content to bring the full vision to life.</p>
           </div>
         </a>
       </div>
@@ -442,41 +468,6 @@
         <h2 class="section-headline audit-entry-headline">Your website should be your best salesperson.</h2>
         <p class="audit-entry-body">We built this audit using the same criteria we apply before any rebuild. Six categories, specific findings, and a prioritized list of what to fix.</p>
         <a href="/audit" class="btn btn-primary">Start Your Website Audit &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Transformation -->
-  <section class="transformation" id="transformation">
-    <div class="container">
-      <div class="transformation-inner reveal">
-        <div class="transformation-text">
-          <p class="section-label">The Difference</p>
-          <h2 class="section-headline">From scattered<br>to <em>cohesive</em>.</h2>
-          <p class="transformation-body">Our clients come to us with brands that feel pieced together: a logo from one designer, a website from another, packaging that doesn't match either. They leave with a brand that feels intentional across every surface.</p>
-          <a href="#work" class="text-link">See transformations &rarr;</a>
-        </div>
-        <div class="transformation-visual">
-          <div class="transform-before">
-            <p class="transform-label">Before</p>
-            <div class="transform-placeholder transform-placeholder-before">
-              <div class="scatter-block" style="top:10%;left:15%;background:#c4a882;width:60px;height:40px;transform:rotate(-8deg)"></div>
-              <div class="scatter-block" style="top:35%;left:55%;background:#7a8fa5;width:50px;height:50px;transform:rotate(12deg)"></div>
-              <div class="scatter-block" style="top:60%;left:25%;background:#b5a0c4;width:70px;height:35px;transform:rotate(-3deg)"></div>
-              <div class="scatter-block" style="top:20%;left:70%;background:#a5b5a0;width:45px;height:55px;transform:rotate(6deg)"></div>
-            </div>
-          </div>
-          <div class="transform-after">
-            <p class="transform-label">After</p>
-            <div class="transform-placeholder transform-placeholder-after">
-              <div class="aligned-block" style="top:15%;left:15%;background:#1B2A4A;width:65%;height:3px"></div>
-              <div class="aligned-block" style="top:30%;left:15%;background:#1B2A4A;width:40px;height:40px;border-radius:0"></div>
-              <div class="aligned-block" style="top:30%;left:calc(15% + 52px);background:#D8D0C4;width:calc(65% - 52px);height:3px;margin-top:18px"></div>
-              <div class="aligned-block" style="top:55%;left:15%;background:#F0EBE3;width:65%;height:50px;border-radius:4px"></div>
-              <div class="aligned-block" style="top:80%;left:15%;background:#1B2A4A;width:30%;height:28px;border-radius:0"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
