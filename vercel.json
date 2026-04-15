@@ -6,7 +6,11 @@
   },
   "redirects": [
     { "source": "/services/brand-identity", "destination": "/services/", "permanent": true },
-    { "source": "/services/brand-identity/", "destination": "/services/", "permanent": true }
+    { "source": "/services/brand-identity/", "destination": "/services/", "permanent": true },
+    { "source": "/services/web-design", "destination": "/services/website-design/", "permanent": true },
+    { "source": "/services/web-design/", "destination": "/services/website-design/", "permanent": true },
+    { "source": "/services/product-sourcing", "destination": "/services/custom-packaging/", "permanent": true },
+    { "source": "/services/product-sourcing/", "destination": "/services/custom-packaging/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/audit", "destination": "/api/audit.js" },
